@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-
+import{HotelDataSeviceService} from './hotel-data-sevice.service';
+import {hotel} from './hotelDataModel';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -7,4 +8,18 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'app';
+ 
+
+hotels: hotel[];
+  constructor(private hotelService : HotelDataSeviceService){
+  }
+  ngOnInit(){
+    this.hotelService.getHotelData()
+    .subscribe((data : hotel[])=>{  //data ekath ekka ena dewal analyze kara gannawa.
+          this.hotels= data;
+    }
+
+  )   ;                       
+  }
+ 
 }
